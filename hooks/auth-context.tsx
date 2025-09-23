@@ -5,8 +5,7 @@ import {
   createContext,
   useContext,
 } from "react";
-import keycloak from "../keycloak";
-
+import keycloak from "~/keycloak";
 type AuthContextType = {
   isAuthenticated: boolean;
   token?: string;
