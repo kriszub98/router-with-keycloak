@@ -1,27 +1,6 @@
-import {
-  isRouteErrorResponse,
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "react-router";
-
-import type { Route } from "./+types/root";
-import "./app.css";
-
-export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-  },
-];
+import * as React from "react";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
+import { AuthProvider, useAuth } from "./auth";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -32,8 +11,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body className="min-h-screen bg-zinc-50 text-zinc-900">
+        <AuthProvider>
+          <TopBar />
+          <main className="max-w-4xl mx-auto p-6">{children}</main>
+        </AuthProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -45,31 +27,32 @@ export default function App() {
   return <Outlet />;
 }
 
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Oops!";
-  let details = "An unexpected error occurred.";
-  let stack: string | undefined;
-
-  if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error";
-    details =
-      error.status === 404
-        ? "The requested page could not be found."
-        : error.statusText || details;
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
-    details = error.message;
-    stack = error.stack;
-  }
-
+function TopBar() {
+  const { state, logout } = useAuth();
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
-      )}
-    </main>
+    <header className="border-b bg-white">
+      <div className="max-w-4xl mx-auto flex items-center justify-between p-4">
+        <a href="/" className="font-semibold">
+          My App
+        </a>
+        <div className="text-sm">
+          {state.authenticated && state.profile ? (
+            <div className="flex items-center gap-3">
+              <span>
+                Hello, {state.profile.firstName ?? state.profile.username}
+              </span>
+              <button
+                className="px-3 py-1 rounded-xl border"
+                onClick={() => logout()}
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <span>Not signed in</span>
+          )}
+        </div>
+      </div>
+    </header>
   );
 }
