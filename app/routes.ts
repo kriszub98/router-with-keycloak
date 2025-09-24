@@ -4,4 +4,5 @@ export default [
   index("routes/home.tsx"),
   route("/dashboard", "./dashboard/dashboard.tsx"),
   route("/login", "routes/login.tsx"),
+  route("/infinite", "routes/infinite-list.tsx"),
 ] satisfies RouteConfig;
