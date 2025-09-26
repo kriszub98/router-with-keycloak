@@ -5,4 +5,5 @@ export default [
   route("/dashboard", "./dashboard/dashboard.tsx"),
   route("/login", "routes/login.tsx"),
   route("/infinite", "routes/infinite-list.tsx"),
+  route("/infiniteApi", "routes/infinite-api.tsx"),
 ] satisfies RouteConfig;
