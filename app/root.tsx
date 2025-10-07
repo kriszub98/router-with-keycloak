@@ -56,3 +56,15 @@ function TopBar() {
     </header>
   );
 }
+
+export function ErrorBoundary() {
+  return (
+    <div style={{ padding: 24 }}>
+      <h2>Coś poszło nie tak</h2>
+      <p>
+        Wystąpił nieoczekiwany błąd. Odśwież stronę lub wróć do strony głównej.
+      </p>
+      <a href="/">← Powrót na stronę główną</a>
+    </div>
+  );
+}
