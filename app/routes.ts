@@ -6,4 +6,5 @@ export default [
   route("/login", "routes/login.tsx"),
   route("/infinite", "routes/infinite-list.tsx"),
   route("/infiniteApi", "routes/infinite-api.tsx"),
+  route("/accordion", "accordion.tsx"),
 ] satisfies RouteConfig;
