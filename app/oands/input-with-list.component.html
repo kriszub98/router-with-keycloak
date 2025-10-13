@@ -1,0 +1,13 @@
+<!-- input-with-list.component.html -->
+<mat-form-field appearance="outline" class="w-full">
+  <mat-label>{{ label }}</mat-label>
+  <input type="text" matInput [formControl]="ctrl" (blur)="onBlur()" [matAutocomplete]="auto" />
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    (optionSelected)="onOptionSelected($event.option.value)"
+  >
+    <mat-option *ngFor="let opt of options$ | async" [value]="opt">
+      {{ opt.name }} — {{ opt.code }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
