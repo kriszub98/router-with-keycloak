@@ -12,10 +12,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body className="min-h-screen bg-zinc-50 text-zinc-900">
-        <AuthProvider>
-          <TopBar />
-          <main className="max-w-4xl mx-auto p-6">{children}</main>
-        </AuthProvider>
+        {/* <AuthProvider> */}
+        {/* <TopBar /> */}
+        <main className="max-w-4xl mx-auto p-6">{children}</main>
+        {/* </AuthProvider> */}
         <ScrollRestoration />
         <Scripts />
       </body>

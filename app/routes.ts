@@ -7,4 +7,5 @@ export default [
   route("/infinite", "routes/infinite-list.tsx"),
   route("/infiniteApi", "routes/infinite-api.tsx"),
   route("/accordion", "accordion.tsx"),
+  route("/fileUpload", "routes/file-upload.tsx"),
 ] satisfies RouteConfig;
