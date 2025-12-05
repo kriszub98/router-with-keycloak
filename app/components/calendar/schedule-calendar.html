@@ -1,0 +1,39 @@
+<!-- schedule-calendar.component.html -->
+<div class="schedule-calendar">
+  <div class="header">
+    <h3>{{ title }}</h3>
+
+    <div class="info">
+      <span class="legend">
+        <span class="dot dot-proposed"></span> proponowana data
+      </span>
+      <span class="legend">
+        <span class="dot dot-confirmed"></span> zatwierdzona data
+      </span>
+    </div>
+  </div>
+
+  <full-calendar [options]="calendarOptions"></full-calendar>
+
+  <div class="actions">
+    <div class="current">
+      Aktualna data startu:
+      <strong>{{ schedule?.dateFrom | date:'yyyy-MM-dd' }}</strong>
+      <span *ngIf="schedule?.confirmed" class="badge badge-confirmed">
+        Zatwierdzona
+      </span>
+      <span *ngIf="!schedule?.confirmed" class="badge badge-proposed">
+        Niezatwierdzona
+      </span>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-confirm"
+      [disabled]="schedule?.confirmed"
+      (click)="onConfirm()"
+    >
+      Zatwierdź datę
+    </button>
+  </div>
+</div>
