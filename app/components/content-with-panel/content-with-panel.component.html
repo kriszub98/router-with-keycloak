@@ -1,0 +1,22 @@
+<div
+  class="content-with-panel"
+  [ngClass]="{
+    'content-with-panel--panel-left': panelPosition() === 'left',
+    'content-with-panel--panel-right': panelPosition() === 'right',
+    'content-with-panel--border': withBorder(),
+  }"
+>
+  <main class="content-with-panel__main">
+    <ng-content select="[main]" />
+  </main>
+
+  @if (panelVisible()) {
+    <aside
+      class="content-with-panel__panel"
+      [style.flex-basis]="panelWidth()"
+      [style.width]="panelWidth()"
+    >
+      <ng-content select="[panel]" />
+    </aside>
+  }
+</div>

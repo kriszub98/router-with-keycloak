@@ -1,0 +1,19 @@
+<app-content-with-panel
+  [panelVisible]="true"
+  panelWidth="380px"
+  panelPosition="right"
+>
+  <section main class="page-content">
+    <h1>Orders</h1>
+
+    <p>Main content goes here.</p>
+
+    <app-orders-table />
+  </section>
+
+  <app-side-panel panel>
+    <h2>Details</h2>
+
+    <p>Panel content goes here.</p>
+  </app-side-panel>
+</app-content-with-panel>
